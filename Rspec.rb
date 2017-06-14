@@ -2,6 +2,7 @@ require 'rspec'
 require './TextFiles.rb'
 require 'mysql2'
 
+
 tf = TextFiles.new
 directory = '/home/shlomo/textfiles'
 RSpec.describe TextFiles do
