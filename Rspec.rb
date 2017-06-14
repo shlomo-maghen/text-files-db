@@ -24,11 +24,10 @@ RSpec.describe TextFiles do
 	it 'should raise an error when db is offline' do
 		# the reason it wasnt working is because we were looking for 'query'
 		# to be called on the client class which never happens: Mysql2::Client.query
-		@result = ''
 		mysql = double('mysql') #create the double
 		allow(Mysql2::Client).to receive(:new){mysql} #return the double when new is called
 		allow(mysql).to receive(:query).and_raise Mysql2::Error, '' # raise error when query is called
-		expect{@result = tf.write_to_db({})}.to raise_error(Mysql2::Error) # expect the error to be raised
+		expect{tf.write_to_db({})}.to raise_error(Mysql2::Error) # expect the error to be raised
 
 		# this way just checks if any object which is of mysql type calls query 
 		# allow_any_instance_of(Mysql2::Client).to receive(:query).and_raise Mysql2::Error, ''
